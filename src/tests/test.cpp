@@ -896,7 +896,7 @@ void test_ola_fft_nodes()
 
     f->setParamValue("fftSize", fft_size);
     f->setParamValue("gain", 0.05);
-    f->setParamValue("cut", 600.0);
+    f->setParamValue("cut", 1000.0);
     
     snd->connect(fft);
     fft->connect(f);
