@@ -687,7 +687,7 @@ void graph<Flt>::_remove_duplicates()
     {
         //std::cout << "full list : " << it.callee->get_name() << std::endl;
         if(it.caller_ctx.target != nullptr)
-            //std::cout << "\t\t called by "<<  it.caller_ctx.target->get_name() << std::endl;
+            std::cout << "\t\t called by "<<  it.caller_ctx.target->get_name() << std::endl;
     }
    for(size_t i = 0; i < call_list.size(); ++i)
    {
