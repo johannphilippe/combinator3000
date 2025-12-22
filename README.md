@@ -28,6 +28,14 @@ Some nodes won't compile unless you have installed :
 
 ## TODO 
 
+- !!! Architecture : choose whether keep templates or move to compile time definition for Float type (all floats, + faustfloat) 
+- Node : change Flt ** outputs to std::vector<std::shared_ptr<Flt>> 
+- RtGraph & mini : choose output device (input device too)
+- RtGraph & mini : where is that thread, can we join ? 
+- sndread node : add a way to check if finished 
+- sndread node : get a return value (not only a runtime error)
+- sndwrite : fix mem alloc 
+
 - Add Nodegroup - as a group that can contain several connected nodes that will share buffer 
 - Move AudioFFT to copy rather than submodule (keep double version instead of float)
 - Add "notify_node_in" method to node called when `connect` so each callee can know a bit about its caller BEFORE processing 

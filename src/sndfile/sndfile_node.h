@@ -65,8 +65,8 @@ struct sndwrite_node : public node<Flt>
         _sf = std::make_unique<SndfileHandle>(filepath, 
             SFM_WRITE, SF_FORMAT_WAV | SF_FORMAT_PCM_32, this->n_inputs, this->sample_rate);
         this->outputs = new Flt*[this->n_inputs];
-        main_mem->alloc_channels<Flt>(this->bloc_size, this->n_inputs, this->outputs);
-        interleaved = (Flt*)main_mem->mem_reserve(this->bloc_size * this->n_inputs * sizeof(Flt));
+        //main_mem->alloc_channels<Flt>(this->bloc_size, this->n_inputs, this->outputs);
+        //interleaved = (Flt*)main_mem->mem_reserve(this->bloc_size * this->n_inputs * sizeof(Flt));
     }
 
     void process(connection<Flt> &previous, audio_context &ctx) override
