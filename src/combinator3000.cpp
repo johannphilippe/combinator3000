@@ -288,7 +288,6 @@ void mixer<Flt>::process(connection<Flt> &previous, audio_context &ctx)
         throw std::runtime_error("Mixer node must have at least one input (ideally two or more, it is a mixer)");
         return;
     }
-    std::cout << "Mixer " << std::endl;
 
     if(this->process_count == 0)
     {
@@ -305,7 +304,6 @@ void mixer<Flt>::process(connection<Flt> &previous, audio_context &ctx)
     }
 
     this->process_count = (this->process_count + 1) % this->n_nodes_in;
-    std::cout << "Mixer ok " << std::endl;
 }
 
 template class mixer<double>;
@@ -597,7 +595,7 @@ void graph<Flt>::_find_and_add_out(node<Flt> * n)
     {
         if(n->n_outputs > 0) 
         {
-            std::cout << "connecting " << n->get_name() << " to mix " << std::endl;
+            //std::cout << "connecting " << n->get_name() << " to mix " << std::endl;
             n->connect(_mix.get());
         }
         return;
@@ -613,7 +611,7 @@ void graph<Flt>::_find_and_add_out(node<Flt> * n)
         if(_connect_list[i].target->connections.size() == 0
             && _connect_list[i].target->n_outputs > 0)
         {
-            std::cout << "connecting " << _connect_list[i].target->get_name() << " to mix " << std::endl;
+            //std::cout << "connecting " << _connect_list[i].target->get_name() << " to mix " << std::endl;
             _connect_list[i].target->connect(_mix.get()); 
             
         } else 
@@ -687,9 +685,9 @@ void graph<Flt>::_remove_duplicates()
 {
     for(auto & it : call_list)
     {
-        std::cout << "full list : " << it.callee->get_name() << std::endl;
+        //std::cout << "full list : " << it.callee->get_name() << std::endl;
         if(it.caller_ctx.target != nullptr)
-            std::cout << "\t\t called by "<<  it.caller_ctx.target->get_name() << std::endl;
+            //std::cout << "\t\t called by "<<  it.caller_ctx.target->get_name() << std::endl;
     }
    for(size_t i = 0; i < call_list.size(); ++i)
    {
@@ -698,7 +696,7 @@ void graph<Flt>::_remove_duplicates()
             if(i == j) continue;
             if(call_list[i] == call_list[j])
             {
-                std::cout << "erasing " << call_list[j].callee->get_name() << std::endl;
+                //std::cout << "erasing " << call_list[j].callee->get_name() << std::endl;
                 if( call_list[j].caller_ctx.target != nullptr)
                     std::cout << "\t connected with " << call_list[j].caller_ctx.target->get_name() << std::endl;
                 call_list.erase(call_list.begin() + j);
