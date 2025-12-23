@@ -30,7 +30,7 @@ struct sndread_node : public node<Flt>
     void process(connection<Flt> &previous, audio_context &ctx) override
     {
         size_t readcnt = _sf->readf(this->interleaved, this->bloc_size);
-        std::cout << "read : " << readcnt << std::endl;
+        //std::cout << "read : " << readcnt << std::endl;
         for(size_t ch = 0; ch < this->n_outputs; ++ch)
         {
             for(size_t i = 0; i < this->bloc_size; ++i)

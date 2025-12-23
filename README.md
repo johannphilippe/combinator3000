@@ -1,5 +1,7 @@
 # Combinator 3000
 
+This project development moved to Xrune : github.com/johannphilippe/xrune
+
 Audio graph generator for multi-environment combination.
 Experimental / in development.
 
@@ -25,48 +27,4 @@ Some nodes won't compile unless you have installed :
 - Faust (with libfaust and LLVM support)
 - Csound 
 - libsndfile
-
-## TODO 
-
-- !!! Architecture : choose whether keep templates or move to compile time definition for Float type (all floats, + faustfloat) 
-- Node : change Flt ** outputs to std::vector<std::shared_ptr<Flt>> 
-- RtGraph & mini : choose output device (input device too)
-- RtGraph & mini : where is that thread, can we join ? 
-- sndread node : add a way to check if finished 
-- sndread node : get a return value (not only a runtime error)
-- sndwrite : fix mem alloc 
-
-- Add Nodegroup - as a group that can contain several connected nodes that will share buffer 
-- Move AudioFFT to copy rather than submodule (keep double version instead of float)
-- Add "notify_node_in" method to node called when `connect` so each callee can know a bit about its caller BEFORE processing 
-(so FFT OLA nodes could check that caller has small bloc size etc)
-
-- Change to shared pointer as soon as possible 
-- Graph drawing (add Faust graph generator)
-- Optimizations in general
-  - The graph class must have some optim to do
-  - A general memory pool to allocate buffers (contiguous memory)
-  - Memory allocator 
-    - Add deallocator (free for the handler)
-  - Find a mechanism to avoid buffer copy -> pointer based. 
-    - graph could allocates memory for all nodes and gathers (when generating call list) how many memory it needs as well as how many different zones (each branch)
-    - Then it could call each node with pointers to memory it needs (or give them the pointers at "init" time, when creating the graph)
-
-  - In the `graph::process_bloc` function, while performing, it could gather information on nodes to optimize (in realtime) ? 
-- Blocsize adapter (without resampling - could be implemented like a circular buffer)
-- Thread safety and threading model 
-  - Thread locks
-  - Idea that several graphs could be used on separated threads to improve performance (taking advantage of several cores)
-
-- Done - FFT node 
-- Done - Faust LLVM node
-- Done - Csound node
-- Done - Sndfile node : still need to 
-  - Add loop mode (optional)
-  - Add change sndfile mode (through function)
-  
-- API to create external nodes (C++ or Faust) and build it (so API to link dynamic libraries at runtime)
-
-- Buffer underrun when starting rtgraph
-
 
